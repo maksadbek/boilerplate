@@ -1,9 +1,10 @@
 name: Run linter checks
-
 on:
-  pull_request:
-    branches:
-      - '**'
+  workflow_dispatch:
+# on:
+#   pull_request:
+#     branches:
+#       - '**'
 
 jobs:
   run_linters_tests:
@@ -17,10 +18,7 @@ jobs:
           POSTGRES_PASSWORD: app
           POSTGRES_USER: app
         options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+          --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
       - name: Checkout
         uses: actions/checkout@v3
